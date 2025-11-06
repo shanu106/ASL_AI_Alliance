@@ -36,6 +36,13 @@ const PORT = 3000;
 // Clips folder
 const clipsPath = path.join(__dirname, "clips");
 
+app.get("/", (req, res) => {
+    res.send("Gesture video generator is running.");
+});
+app.get("/health", (req, res) => {
+    res.send("OK");
+});
+
 // app.get("/generate", (req, res) => {
 //     let text = req.query.text ;
 //     console.log("Received text:", text);

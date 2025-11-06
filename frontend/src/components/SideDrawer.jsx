@@ -30,7 +30,7 @@ const SideDrawer = ({ isOpen, onClose }) => {
  async function sendForAsl(video) {
  const formData = new FormData();
 formData.append("video", video);
-  const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/transcribe`, formData, {
+  const response = await axios.post(`${import.meta.env.VITE_VIDEO_TO_TEXT_BASE_URL}/transcribe`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
@@ -45,13 +45,13 @@ try {
   console.log(youtubeLink)
   setLoading(true);
   setLoadingMessage('Fetching YouTube transcript...');
-  const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/yt`, {
+  const response = await axios.get(`${import.meta.env.VITE_VIDEO_TO_TEXT_BASE_URL}/yt`, {
     params: { url: youtubeLink }
   });
     // setTranscript(res.data)
     setTranscript(response.data)
     alert("YouTube Transcript fetched successfully")
-    console.log(response)
+    console.log(response.data)
     setLoading(false);
     setLoadingMessage('');
 } catch (error) {

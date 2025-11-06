@@ -51,9 +51,18 @@ try {
     const cookiesPath = path.join(__dirname, 'cookies.txt');
 
     const ytdlOptions = {
-      format: 'bv*+ba/b',
+      format: 'bestvideo+bestaudio/best',
       mergeOutputFormat: 'mp4',
       output: outputPath,
+           verbose: true,
+      addHeader: [
+        "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Accept-Language: en-US,en;q=0.9"
+      ],
+      extractorArgs: ["youtube:player_client=ios"],
+      forceIpv4: true,
+      geoBypass: true,
+      sourceAddress: '0.0.0.0',
       print: 'after_move:filepath'
     };
 
@@ -64,7 +73,11 @@ try {
       console.warn(`cookies.txt not found at ${cookiesPath}; proceeding without cookies`);
     }
 
-    const stdout = await youtubedl(videoUrl, ytdlOptions);
+    const stdout = await youtubedl(videoUrl, {
+      ...ytdlOptions,
+   
+   
+    });
     const pathOut = (typeof stdout === 'string' ? stdout.trim().split("\n").pop() : null) || extractFilePath(String(stdout || ''));
     if (!pathOut) {
       console.error("❌ Could not determine downloaded file path from youtube-dl output:", stdout);
@@ -91,6 +104,7 @@ app.post("/transcribe", upload.single('video'), async (req, res)=>{
        
        console.log("transcript called");
         const response =await transcript(videoPath)
+        console.log("transcription done : ", response);
         res.json({response})
    // ye aaj 17 sep ko night me 2:10 pr working h 
 
