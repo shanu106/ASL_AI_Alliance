@@ -1,3 +1,7 @@
 **/.env
 **/node_modules
+<<<<<<< HEAD
 **/*.blend
+=======
+**/*.blend
+>>>>>>> dc4ff1a5a1b44a82cc29931b2810cc0ee1b79e10
