@@ -1,0 +1,16 @@
+project_id = "aqusqqxxbtabnjulzqvg"
+
+[functions.generate-lesson]
+verify_jwt = false
+
+[functions.check-answer]
+verify_jwt = false
+
+[functions.transcribe-audio]
+verify_jwt = false
+
+[functions.chat-tutor]
+verify_jwt = false
+
+[functions.send-email]
+verify_jwt = false
